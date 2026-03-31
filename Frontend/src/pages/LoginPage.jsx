@@ -1,6 +1,6 @@
 import React from 'react'
-import LeftPanel from '../components/loginpage/LeftPanel'
-import LoginForm from '../components/loginpage/LoginForm'
+import LeftPanel from '@/components/loginpage/LeftPanel'
+import LoginForm from '@/components/loginpage/LoginForm'
 
 const LoginPage = () => {
   return (

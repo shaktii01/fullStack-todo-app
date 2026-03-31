@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { resetPassword } from "../../api/authApi";
+import { resetPassword } from "@/api/authApi";
+import { Link } from "react-router-dom";
 
 const ForgotPasswordForm = () => {
   const [email, setEmail] = useState("");
@@ -86,9 +87,9 @@ const ForgotPasswordForm = () => {
 
         <p className="text-gray-400 text-sm mt-6">
           Remember your password?{" "}
-          <a href="/" className="text-blue-400 hover:underline">
+          <Link to={"/login"} className="text-blue-400 hover:underline">
             Login
-          </a>
+          </Link>
         </p>
 
       </div>

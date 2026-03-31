@@ -1,6 +1,6 @@
 import React from "react";
-import LeftPanel from "../components/loginpage/LeftPanel";
-import ForgotPasswordForm from "../components/forgotpassword/ForgotPasswordForm";
+import LeftPanel from "@/components/loginpage/LeftPanel";
+import ForgotPasswordForm from "@/components/forgotpassword/ForgotPasswordForm";
 
 
 const ForgotPasswordPage = () => {

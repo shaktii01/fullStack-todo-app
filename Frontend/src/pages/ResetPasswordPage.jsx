@@ -1,6 +1,6 @@
 import React from 'react'
-import ResetPasswordForm from '../components/resetpasword/ResetPasswordForm'
-import LeftPanel from '../components/loginpage/LeftPanel'
+import ResetPasswordForm from '@/components/resetpasword/ResetPasswordForm'
+import LeftPanel from '@/components/loginpage/LeftPanel'
 
 const ResetPasswordPage = () => {
   return (

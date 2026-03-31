@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { resetPasswordWithToken } from "../../api/authApi";
+import { resetPasswordWithToken } from "@/api/authApi";
 
 const ResetPasswordForm = () => {
   const { token } = useParams();
@@ -50,7 +50,7 @@ const ResetPasswordForm = () => {
       });
 
       setTimeout(() => {
-        navigate("/");
+        navigate("/login");
       }, 1000);
 
     } catch (err) {

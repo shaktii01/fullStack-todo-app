@@ -34,4 +34,9 @@ export const logoutUser = async () => {
   return response.data;
 };
 
+export const getUserProfile = async () => {
+  const response = await API.get("/auth/profile");
+  return response.data;
+};
+
 export default API; 

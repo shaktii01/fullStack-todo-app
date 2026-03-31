@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { registerUser } from "../../api/authApi";
+import { registerUser } from "@/api/authApi";
 import { Link, useNavigate } from "react-router-dom";
-import InputField from "../../ui/InputField";
+import InputField from "@/ui/InputField";
 
 const RegisterForm = () => {
 
@@ -128,7 +128,7 @@ const RegisterForm = () => {
         <p className="text-gray-400 text-sm mt-6 text-center">
           Already have an account?{" "}
           <Link
-            to="/"
+            to="/login"
             className="text-blue-400 hover:underline"
           >
             Login
