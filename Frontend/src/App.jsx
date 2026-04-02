@@ -1,24 +1,22 @@
-import React from 'react'
 import LoginPage from '@/pages/LoginPage'
 import { Route, Routes } from 'react-router-dom'
 import RegisterPage from '@/pages/RegisterPage'
 import ForgotPasswordPage from '@/pages/ForgotPasswordPage'
 import ResetPasswordPage from '@/pages/ResetPasswordPage'
 import ProtectedRoute from '@/routes/ProtectedRoute'
-import Home from '@/pages/Home'
-import DashboardHome from '@/pages/dashboard/DashboardHome'
+import HomePage from '@/pages/HomePage'
 import DashboardPage from '@/pages/dashboard/DashboardPage'
-import DashboardMyTask from '@/pages/dashboard/DashboardMyTask'
-import CreateTask from '@/pages/dashboard/CreateTask'
+import MyTask from '@/pages/dashboard/MyTask'
+import Settings from '@/pages/dashboard/Settings'
+import Home from './pages/dashboard/Home'
 import { ToastContainer } from 'react-toastify'
-
 
 const App = () => {
   return (
-    <div className=' h-screen'>
+    <div className=' h-screen bg-gray-900'>
       <ToastContainer />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/forgot-password" element={<ForgotPasswordPage />} />
@@ -32,9 +30,11 @@ const App = () => {
             </ProtectedRoute>
           }
         >
-          <Route index element={<DashboardHome />} />
-          <Route path="mytask" element={<DashboardMyTask />} />
-          <Route path="createTask" element={<CreateTask />} />
+          <Route index element={<Home />} />
+
+          <Route path="profile" element={<Home />} />
+          <Route path="mytask" element={<MyTask />} />
+          <Route path="settings" element={<Settings />} />
 
         </Route>
 

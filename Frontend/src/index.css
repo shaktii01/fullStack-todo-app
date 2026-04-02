@@ -1,1 +1,7 @@
   @import "tailwindcss";
+
+  *{
+    font-family: 'Poppins', sans-serif;
+    scrollbar-width: thin;
+    scrollbar-color: black #2f3030;
+  }

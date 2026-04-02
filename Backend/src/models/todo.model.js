@@ -13,10 +13,6 @@ const todoSchema = new mongoose.Schema({
         type: Boolean,  
         default: false
     },
-    color: {    
-        type: String,
-        default: '#3B82Ff' 
-    },
     user: {
         type: mongoose.Schema.Types.ObjectId,  
         ref: "User",

@@ -1,4 +1,3 @@
-import axios from "axios";
 import API from "./authApi";
 export const getTodos = () => API.get("/todos/todos");
 

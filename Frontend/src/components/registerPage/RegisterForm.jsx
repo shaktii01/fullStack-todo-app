@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { registerUser } from "@/api/authApi";
 import { Link, useNavigate } from "react-router-dom";
-import InputField from "@/ui/InputField";
+import { User, Mail, Lock, ArrowRight } from "lucide-react";
 
 const RegisterForm = () => {
-
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -19,7 +18,6 @@ const RegisterForm = () => {
     success: "",
   });
 
-  // Handle Input
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -29,7 +27,6 @@ const RegisterForm = () => {
     }));
   };
 
-  // Submit
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -44,7 +41,6 @@ const RegisterForm = () => {
         success: "Account created successfully 🎉",
       });
 
-      // Reset form
       setFormData({
         username: "",
         email: "",
@@ -52,9 +48,9 @@ const RegisterForm = () => {
       });
 
       setTimeout(() => {
-        navigate("/");
-      }, 2000);
-
+        localStorage.setItem("isLoggedIn", "true");
+        navigate("/dashboard");
+      }, 1000);
     } catch (err) {
       setStatus({
         loading: false,
@@ -65,76 +61,107 @@ const RegisterForm = () => {
   };
 
   return (
-    <div className="w-1/2 relative bg-gradient-to-br from-gray-900 via-gray-950 to-black p-10 flex flex-col justify-center overflow-hidden">
+    <div className="w-full lg:w-1/2 min-h-full bg-black flex items-center justify-center px-6 py-10 relative overflow-hidden">
+      {/* Background glow */}
+      <div className="absolute top-20 left-10 h-72 w-72 rounded-full bg-blue-500/10 blur-3xl"></div>
+      <div className="absolute bottom-10 right-10 h-72 w-72 rounded-full bg-purple-500/10 blur-3xl"></div>
 
-      <div className="absolute inset-0 bg-blue-500/10 blur-3xl"></div>
-
-      <div className="relative z-10">
-        <h2 className="text-3xl font-bold text-white mb-2">
-          Create Account ✨
-        </h2>
-
-        <p className="text-gray-400 mb-6 text-sm">
-          Start managing your tasks today
-        </p>
+      <div className="relative z-10 w-full ax-w-mmd">
+        <div className="mb-6">
+          <p className="text-sm uppercase tracking-[0.25em] text-gray-500 mb-3">
+            Join Now
+          </p>
+          <h2 className="text-4xl font-bold text-white leading-tight">
+            Create your <span className="text-gray-300">account</span>
+          </h2>
+          <p className="text-gray-400 mt-3 text-sm">
+            Start managing your tasks with a clean and modern workflow.
+          </p>
+        </div>
 
         <form
           onSubmit={handleSubmit}
-          className="space-y-5 bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-white/10 shadow-xl"
+          className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-2xl p-6 sm:p-8 shadow-2xl space-y-5"
         >
-          <InputField
-            label="Username"
-            name="username"
-            value={formData.username}
-            onChange={handleChange}
-            placeholder="Enter username"
-          />
+          <div>
+            <label className="mb-2 block text-sm font-medium text-gray-300">
+              Username
+            </label>
+            <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 focus-within:border-white/20 transition">
+              <User size={18} className="text-gray-500" />
+              <input
+                type="text"
+                name="username"
+                value={formData.username}
+                onChange={handleChange}
+                placeholder="Enter username"
+                className="w-full bg-transparent text-white placeholder:text-gray-500 outline-none"
+              />
+            </div>
+          </div>
 
-          <InputField
-            label="Email"
-            name="email"
-            type="email"
-            value={formData.email}
-            onChange={handleChange}
-            placeholder="you@example.com"
-          />
+          <div>
+            <label className="mb-2 block text-sm font-medium text-gray-300">
+              Email
+            </label>
+            <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 focus-within:border-white/20 transition">
+              <Mail size={18} className="text-gray-500" />
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="you@example.com"
+                className="w-full bg-transparent text-white placeholder:text-gray-500 outline-none"
+              />
+            </div>
+          </div>
 
-          <InputField
-            label="Password"
-            name="password"
-            type="password"
-            value={formData.password}
-            onChange={handleChange}
-            placeholder="••••••••"
-          />
+          <div>
+            <label className="mb-2 block text-sm font-medium text-gray-300">
+              Password
+            </label>
+            <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 focus-within:border-white/20 transition">
+              <Lock size={18} className="text-gray-500" />
+              <input
+                type="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                placeholder="••••••••"
+                className="w-full bg-transparent text-white placeholder:text-gray-500 outline-none"
+              />
+            </div>
+          </div>
 
           {status.error && (
-            <p className="text-red-500 text-sm">{status.error}</p>
+            <div className="rounded-xl border border-red-500/20 bg-red-500/10 px-4 py-3">
+              <p className="text-sm text-red-400">{status.error}</p>
+            </div>
           )}
 
           {status.success && (
-            <p className="text-green-500 text-sm">{status.success}</p>
+            <div className="rounded-xl border border-green-500/20 bg-green-500/10 px-4 py-3">
+              <p className="text-sm text-green-400">{status.success}</p>
+            </div>
           )}
 
           <button
             type="submit"
             disabled={status.loading}
-            className="w-full py-3 rounded-xl font-semibold text-white bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 hover:opacity-90 transition"
+            className="w-full inline-flex items-center justify-center gap-2 rounded-2xl bg-white text-black py-3 font-semibold transition hover:bg-gray-200 disabled:opacity-60"
           >
             {status.loading ? "Creating..." : "Register"}
+            {!status.loading && <ArrowRight size={18} />}
           </button>
         </form>
 
-        <p className="text-gray-400 text-sm mt-6 text-center">
+        <p className="mt-6 text-center text-sm text-gray-400">
           Already have an account?{" "}
-          <Link
-            to="/login"
-            className="text-blue-400 hover:underline"
-          >
+          <Link to="/login" className="text-white hover:text-gray-300 transition">
             Login
           </Link>
         </p>
-
       </div>
     </div>
   );

@@ -2,6 +2,7 @@ const userModel = require('../models/user.model');
 const jwt = require('jsonwebtoken');
 const bcrypt = require("bcryptjs");
 const nodemailer = require("nodemailer");
+const imagekit = require("../services/storage.services");
 
 const transporter = nodemailer.createTransport({
     service: "gmail",
@@ -164,7 +165,7 @@ async function resetPassword(req, res) {
                 message: "Invalid or expired token"
             });
         }
-        
+
         const user = await userModel.findById(decoded.id);
         if (!user) {
             return res.status(404).json({
@@ -195,6 +196,45 @@ async function getUserProfile(req, res) {
             message: 'Internal server error'
         });
     }
-}
+} const updateUserProfile = async (req, res) => {
+    try {
+        const { username, email } = req.body;
 
-module.exports = { registerUser, loginUser, logoutUser, forgotPassword, resetPassword, getUserProfile }
+        const updateData = {
+            username,
+            email,
+        };
+
+        if (req.file) {
+            const uploadedImage = await imagekit.upload({
+                file: req.file.buffer,
+                fileName: req.file.originalname,
+                folder: "/uploads",
+            });
+
+            updateData.profilePic = uploadedImage.url;
+        }
+
+        const updatedUser = await userModel.findByIdAndUpdate(
+            req.user.id,
+            updateData,
+            { new: true }
+        ).select("-password");
+
+        if (!updatedUser) {
+            return res.status(404).json({ message: "User not found" });
+        }
+
+        res.status(200).json({
+            message: "Profile updated successfully",
+            user: updatedUser,
+        });
+    } catch (error) {
+        console.error("UPDATE PROFILE ERROR:", error);
+        res.status(500).json({
+            message: "Internal server error",
+            error: error.message,
+        });
+    }
+};
+module.exports = { registerUser, loginUser, logoutUser, forgotPassword, resetPassword, getUserProfile, updateUserProfile }

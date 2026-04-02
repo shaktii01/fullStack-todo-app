@@ -1,11 +1,11 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Home = () => {
+const HomePage = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-white">
+    <div className="min-h-screen bg-zinc-950/50 text-white">
 
       {/* 🔝 Navbar */}
       <nav className="flex justify-between items-center px-10 py-6 border-b border-zinc-800">
@@ -110,4 +110,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomePage;

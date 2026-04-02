@@ -1,48 +1,57 @@
-import React from 'react'
+import React from "react";
 
 const LeftPanel = () => {
-    return (
-        <div className="w-1/2 relative bg-gradient-to-br from-slate-100 via-white to-slate-200 p-10 flex flex-col justify-center overflow-hidden">
+  return (
+    <div className="hidden lg:flex w-1/2 h-full bg-black/20 relative overflow-hidden items-center px-10">
+      <div className="absolute top-8 left-8 h-28 w-28 rounded-full bg-white/5 blur-3xl" />
+      <div className="absolute bottom-8 right-8 h-28 w-28 rounded-full bg-white/5 blur-3xl" />
+      <div className="absolute top-1/2 left-1/3 h-24 w-24 rounded-full bg-white/5 blur-3xl" />
 
-            <div className="absolute -top-24 -left-24 w-80 h-80 bg-blue-500/30 blur-3xl rounded-full"></div>
-            <div className="absolute bottom-0 right-0 w-80 h-80 bg-purple-500/30 blur-3xl rounded-full"></div>
-            <div className="absolute top-1/2 left-1/3 w-60 h-60 bg-pink-400/20 blur-3xl rounded-full"></div>
+      <div className="relative z-10 max-w-lg">
+        <span className="mb-4 inline-flex items-center rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.18em] text-gray-400">
+          Smart To-Do App
+        </span>
 
-            <div className="relative z-10">
+        <h1 className="text-4xl font-bold leading-tight text-white sm:text-5xl">
+          Plan your day
+          <br />
+          <span className="text-gray-400">stay in control</span>
+        </h1>
 
-                <span className="inline-block mb-4 px-4 py-1 text-xs font-semibold bg-white/70 backdrop-blur-md rounded-full shadow text-gray-700">
-                    🚀 Smart To-Do App
-                </span>
+        <p className="mt-5 max-w-md text-sm leading-6 text-gray-400 sm:text-base">
+          Organize tasks, manage priorities, and keep your workflow simple with
+          a clean and focused task management experience.
+        </p>
 
-                <h1 className="text-4xl font-bold text-gray-800 mb-4 leading-tight">
-                    Plan Your Day <br />
-                    <span className="bg-gradient-to-r from-blue-600 via-purple-500 to-pink-500 text-transparent bg-clip-text">
-                        Stay in Control
-                    </span>
-                </h1>
-
-                <p className="text-gray-600 mb-8 max-w-md">
-                    Organize tasks, boost productivity, and never miss what matters.
-                    Your all-in-one smart task manager.
-                </p>
-
-                <div className="flex flex-wrap gap-3 mb-10">
-                    <span className="px-4 py-2 bg-white/70 backdrop-blur-md shadow-md rounded-full text-sm text-gray-700 hover:scale-105 transition">
-                        ✅ Task Manager
-                    </span>
-                    <span className="px-4 py-2 bg-white/70 backdrop-blur-md shadow-md rounded-full text-sm text-gray-700 hover:scale-105 transition">
-                        📅 Daily Planner
-                    </span>
-                    <span className="px-4 py-2 bg-white/70 backdrop-blur-md shadow-md rounded-full text-sm text-gray-700 hover:scale-105 transition">
-                        ⚡ Fast & Simple
-                    </span>
-                    <span className="px-4 py-2 bg-white/70 backdrop-blur-md shadow-md rounded-full text-sm text-gray-700 hover:scale-105 transition">
-                        🎯 Focus Mode
-                    </span>
-                </div>
-            </div>
+        <div className="mt-8 flex flex-wrap gap-3">
+          <span className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-gray-300">
+            Task Manager
+          </span>
+          <span className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-gray-300">
+            Daily Planner
+          </span>
+          <span className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-gray-300">
+            Fast & Simple
+          </span>
+          <span className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-gray-300">
+            Focus Mode
+          </span>
         </div>
-    )
-}
 
-export default LeftPanel
+        <div className="mt-10 grid grid-cols-2 gap-4">
+          <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+            <p className="text-2xl font-semibold text-white">10k+</p>
+            <p className="mt-1 text-sm text-gray-400">Tasks managed smoothly</p>
+          </div>
+
+          <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+            <p className="text-2xl font-semibold text-white">99%</p>
+            <p className="mt-1 text-sm text-gray-400">Focused daily workflow</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default LeftPanel;
